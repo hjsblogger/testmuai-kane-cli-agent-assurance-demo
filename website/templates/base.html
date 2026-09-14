@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Fernwood Press{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div id="top-banner">1,200+ authors published &middot; Free ISBN on every package</div>
+
+  <header>
+    <a href="{{ url_for('home') }}" id="site-name">
+      <img src="{{ url_for('static', filename='logo.svg') }}" alt="Fernwood Press" id="site-logo">
+    </a>
+
+    <nav id="main-nav">
+      <a href="{{ url_for('publish_packages') }}" id="nav-publish">Publish Your Book</a>
+      <a href="{{ url_for('books_overview') }}" id="nav-books">Published Books</a>
+      <a href="{{ url_for('success_stories') }}" id="nav-success">Success Stories</a>
+    </nav>
+
+    <form action="{{ url_for('search') }}" method="get" id="search-form">
+      <input type="text" name="q" placeholder="Search titles, authors, or genres" value="{{ request.args.get('q', '') }}" aria-label="Search">
+      <button type="submit">Search</button>
+    </form>
+
+    <a href="{{ url_for('my_submissions') }}" id="submissions-link">My Submissions ({{ submission_count }})</a>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <a href="{{ url_for('contact') }}">Contact &amp; support</a>
+    <p>Fernwood Press is a demonstration self-publishing platform. All packages, titles, authors, and seat counts are fictional.</p>
+  </footer>
+</body>
+</html>

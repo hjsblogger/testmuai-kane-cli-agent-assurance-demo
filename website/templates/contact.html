@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Contact — Fernwood Press{% endblock %}
+{% block content %}
+  <h1>Contact &amp; support</h1>
+  <p id="support-hours">Monday–Friday, 9:00am–5:00pm.</p>
+  <p id="support-phone">Phone: (555) 020-0200</p>
+  <p id="submission-note">Questions about an existing submission? Include your reference number
+    (e.g. SUB-1004) when you write in — you can find it on the
+    <a href="{{ url_for('my_submissions') }}">My Submissions</a> page.</p>
+{% endblock %}

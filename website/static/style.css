@@ -1,0 +1,63 @@
+body { font-family: system-ui, sans-serif; margin: 0; color: #1a1a1a; }
+#top-banner { background: #0b3b2e; color: #fff; padding: 8px 16px; text-align: center; font-weight: 600; font-size: 0.9rem; }
+header { display: flex; align-items: center; gap: 16px; padding: 10px 16px; border-bottom: 1px solid #ddd; flex-wrap: wrap; }
+#site-name { display: flex; align-items: center; text-decoration: none; color: #1a1a1a; }
+#site-logo { height: 40px; width: auto; display: block; }
+#main-nav { display: flex; gap: 16px; flex-wrap: wrap; }
+#main-nav a { text-decoration: none; color: #1a1a1a; font-weight: 600; font-size: 0.92rem; }
+#search-form { margin-left: auto; }
+#submissions-link { text-decoration: none; color: #1a1a1a; font-weight: 600; white-space: nowrap; }
+main { padding: 16px; max-width: 960px; }
+footer { padding: 16px; border-top: 1px solid #ddd; color: #555; font-size: 0.85rem; }
+
+/* Hero */
+#hero { background: #f4f1ea; border-radius: 10px; padding: 40px 24px; text-align: center; margin-bottom: 32px; }
+#hero-title { font-size: 2rem; margin: 0 0 8px; font-family: Georgia, 'Times New Roman', serif; }
+#hero-subtitle { color: #444; max-width: 560px; margin: 0 auto 20px; }
+#hero-cta { display: inline-block; background: #0b3b2e; color: #fff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: 600; }
+#hero-stat { margin-top: 16px; color: #666; font-size: 0.9rem; }
+
+#packages-preview, #featured-books { margin-bottom: 36px; }
+
+/* Packages */
+.package-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin: 16px 0; }
+.package-card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+.package-card h2, .package-card h3 { margin: 0; font-family: Georgia, 'Times New Roman', serif; }
+.package-tagline { color: #555; font-size: 0.9rem; margin: 0; }
+.package-price { font-weight: 700; margin: 4px 0; }
+.package-features { margin: 6px 0; padding-left: 18px; font-size: 0.9rem; color: #333; }
+.seats-left { color: #14532d; font-weight: 600; font-size: 0.88rem; margin: 6px 0 2px; }
+.seats-full { color: #b91c1c; font-weight: 600; font-size: 0.88rem; margin: 6px 0 2px; }
+.package-link { display: inline-block; background: #0b3b2e; color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; margin-top: 6px; text-align: center; }
+
+/* Books */
+.book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.book-list { display: flex; flex-direction: column; gap: 10px; }
+.book-list .book-tile { display: flex; gap: 12px; align-items: flex-start; }
+.book-list .book-cover { width: 60px; height: 90px; }
+.book-tile { border: 1px solid #ddd; border-radius: 6px; padding: 12px; }
+.book-cover { width: 100%; max-width: 160px; height: auto; aspect-ratio: 2 / 3; border-radius: 4px; display: block; margin: 0 auto 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+.book-title { font-weight: 600; display: block; }
+.book-format { font-size: 0.78rem; color: #777; margin-top: 2px; }
+
+#book-detail-layout { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+#book-cover { width: 220px; max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); flex-shrink: 0; }
+#book-detail-info { flex: 1; min-width: 240px; }
+#publish-like-this-cta { display: inline-block; margin-top: 12px; background: #0b3b2e; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; }
+
+/* Genre overview */
+#genre-list { list-style: none; padding: 0; }
+#genre-list li { padding: 6px 0; border-bottom: 1px solid #eee; }
+#genre-list a { text-decoration: none; color: #0b3b2e; font-weight: 600; }
+
+/* Testimonials */
+#testimonial-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.testimonial-card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; background: #f9f8f4; }
+.testimonial-quote { font-style: italic; margin: 0 0 8px; }
+.testimonial-attribution { font-size: 0.88rem; color: #444; margin: 0; }
+.testimonial-package { color: #777; }
+
+.error { color: #b91c1c; }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid #eee; }
+.disclaimer { font-size: 0.85rem; color: #555; }

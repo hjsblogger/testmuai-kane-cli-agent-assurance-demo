@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Fernwood Press — Publish Your Book{% endblock %}
+{% block content %}
+  <section id="hero">
+    <h1 id="hero-title">Publish your book with Fernwood Press</h1>
+    <p id="hero-subtitle">From manuscript to ISBN in as little as 14 days. Editing, cover design, and
+      distribution — all in one place.</p>
+    <a href="{{ url_for('publish_packages') }}" id="hero-cta">Start Publishing</a>
+    <p id="hero-stat">{{ book_count }}+ books published through our platform</p>
+  </section>
+
+  <section id="packages-preview">
+    <h2>Choose a publishing package</h2>
+    <div class="package-grid">
+      {% for p in packages %}
+        <div class="package-card">
+          <h3>{{ p.name }}</h3>
+          <p class="package-tagline">{{ p.tagline }}</p>
+          <p class="package-price">${{ p.price }}</p>
+          <a href="{{ url_for('package_detail', package_id=p.id) }}" class="package-link">View package</a>
+        </div>
+      {% endfor %}
+    </div>
+    <a href="{{ url_for('publish_packages') }}" id="compare-packages-link">Compare all packages &rarr;</a>
+  </section>
+
+  <section id="featured-books">
+    <h2>Recently published</h2>
+    <div class="book-grid">
+      {% for b in featured %}
+        <div class="book-tile">
+          <a href="{{ url_for('book_detail', book_id=b.id) }}">
+            <img src="{{ url_for('static', filename='covers/' ~ b.id ~ '.svg') }}" alt="Cover of {{ b.title }}" class="book-cover">
+          </a>
+          <a href="{{ url_for('book_detail', book_id=b.id) }}" class="book-title">{{ b.title }}</a>
+          <div class="book-author">{{ b.author }}</div>
+        </div>
+      {% endfor %}
+    </div>
+    <a href="{{ url_for('books_overview') }}" id="browse-books-link">Browse all published books &rarr;</a>
+  </section>
+{% endblock %}

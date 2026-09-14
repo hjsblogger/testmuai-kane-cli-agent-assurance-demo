@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ genre_name }} — Fernwood Press{% endblock %}
+{% block content %}
+  <h1>{{ genre_name }}</h1>
+
+  {% if books %}
+    <p id="result-count">{{ total }} book{{ 's' if total != 1 else '' }} found</p>
+
+    <form method="get" id="listing-controls">
+      <label>Sort by
+        <select name="sort" onchange="this.form.submit()">
+          <option value="title" {{ 'selected' if sort == 'title' }}>Title (A-Z)</option>
+          <option value="rating" {{ 'selected' if sort == 'rating' }}>Rating (high to low)</option>
+        </select>
+      </label>
+      <label>Show
+        <select name="per_page" onchange="this.form.submit()">
+          <option value="6" {{ 'selected' if per_page == 6 }}>6 per page</option>
+          <option value="12" {{ 'selected' if per_page == 12 }}>12 per page</option>
+          <option value="20" {{ 'selected' if per_page == 20 }}>20 (all)</option>
+        </select>
+      </label>
+      <a href="?sort={{ sort }}&per_page={{ per_page }}&view=grid" id="grid-view-link">Grid view</a>
+      <a href="?sort={{ sort }}&per_page={{ per_page }}&view=list" id="list-view-link">List view</a>
+    </form>
+
+    <div class="book-{{ view }}" id="results-{{ view }}">
+      {% for b in books %}
+        <div class="book-tile">
+          <a href="{{ url_for('book_detail', book_id=b.id) }}">
+            <img src="{{ url_for('static', filename='covers/' ~ b.id ~ '.svg') }}" alt="Cover of {{ b.title }}" class="book-cover">
+          </a>
+          <a href="{{ url_for('book_detail', book_id=b.id) }}" class="book-title">{{ b.title }}</a>
+          <div class="book-author">{{ b.author }}</div>
+          <div class="book-rating">Rating: {{ b.rating }}</div>
+          <div class="book-format">{{ b.format }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p id="no-results">No books found in this genre.</p>
+  {% endif %}
+{% endblock %}

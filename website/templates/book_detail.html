@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ book.title }} — Fernwood Press{% endblock %}
+{% block content %}
+  <div id="book-detail-layout">
+    <img src="{{ url_for('static', filename='covers/' ~ book.id ~ '.svg') }}" alt="Cover of {{ book.title }}" id="book-cover">
+    <div id="book-detail-info">
+      <h1 id="book-title">{{ book.title }}</h1>
+      <p id="book-author">by {{ book.author }}</p>
+      <p id="book-genre">{{ book.genre }}</p>
+      <p id="book-rating">Rating: {{ book.rating }}</p>
+      <p id="book-format">{{ book.format }}</p>
+      <p id="book-isbn">ISBN: {{ book.isbn }}</p>
+      <p id="book-published">Published {{ book.published }}</p>
+      <p id="book-blurb">{{ book.blurb }}</p>
+
+      {% if package %}
+        <p id="book-package">Published via our <a href="{{ url_for('package_detail', package_id=package.id) }}">{{ package.name }} package</a>.</p>
+      {% endif %}
+
+      <a href="{{ url_for('publish_packages') }}" id="publish-like-this-cta">Publish your book like this one</a>
+    </div>
+  </div>
+{% endblock %}

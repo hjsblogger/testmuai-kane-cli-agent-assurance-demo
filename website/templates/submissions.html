@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}My Submissions — Fernwood Press{% endblock %}
+{% block content %}
+  <h1>My Submissions</h1>
+
+  {% if items %}
+    <table id="submissions-table">
+      <thead>
+        <tr><th>Reference</th><th>Book Title</th><th>Author</th><th>Package</th><th>Seat</th><th>Status</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+          <tr class="submission-row">
+            <td>{{ item.submission_id }}</td>
+            <td>{{ item.book_title }}</td>
+            <td>{{ item.author_name }}</td>
+            <td>{{ item.package_name }}</td>
+            <td>{{ item.seat }}</td>
+            <td>{{ item.status }}</td>
+            <td>
+              <form action="{{ url_for('withdraw_submission', index=loop.index0) }}" method="post">
+                <button type="submit" class="withdraw-button">Withdraw</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p id="no-submissions">You haven't submitted a manuscript yet.</p>
+    <a href="{{ url_for('publish_packages') }}">Browse publishing packages</a>
+  {% endif %}
+{% endblock %}

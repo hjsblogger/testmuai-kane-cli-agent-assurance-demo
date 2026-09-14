@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Success Stories — Fernwood Press{% endblock %}
+{% block content %}
+  <h1>Author success stories</h1>
+
+  <div id="testimonial-list">
+    {% for t in testimonials %}
+      <div class="testimonial-card">
+        <p class="testimonial-quote">&ldquo;{{ t.quote }}&rdquo;</p>
+        <p class="testimonial-attribution">
+          &mdash; {{ t.author }}, author of
+          <a href="{{ url_for('book_detail', book_id=t.book_id) }}">{{ t.book_title }}</a>
+          <span class="testimonial-package">({{ t.package_name }} package)</span>
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

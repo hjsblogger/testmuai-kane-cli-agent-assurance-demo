@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Search results for "{{ query }}" — Fernwood Press{% endblock %}
+{% block content %}
+  <h1>Search results for "{{ query }}"</h1>
+
+  {% if results %}
+    <div class="book-grid" id="results-grid">
+      {% for b in results %}
+        <div class="book-tile">
+          <a href="{{ url_for('book_detail', book_id=b.id) }}">
+            <img src="{{ url_for('static', filename='covers/' ~ b.id ~ '.svg') }}" alt="Cover of {{ b.title }}" class="book-cover">
+          </a>
+          <a href="{{ url_for('book_detail', book_id=b.id) }}" class="book-title">{{ b.title }}</a>
+          <div class="book-author">{{ b.author }}</div>
+          <div class="book-rating">Rating: {{ b.rating }}</div>
+          <div class="book-format">{{ b.format }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p id="no-results">No books match your search</p>
+  {% endif %}
+{% endblock %}

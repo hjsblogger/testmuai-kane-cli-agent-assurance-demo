@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="360" viewBox="0 0 240 360" role="img" aria-label="Cover of Distant Engine by Leandra Zhukov">
+  <defs>
+    <linearGradient id="bg-distant-engine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9f1239"/>
+      <stop offset="1" stop-color="#5c0a20"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="360" fill="url(#bg-distant-engine)"/>
+  <rect x="6" y="6" width="228" height="348" fill="none" stroke="#f6a8c0" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="188" cy="46" r="18" fill="none" stroke="#f6a8c0" stroke-width="2" opacity="0.6"/><ellipse cx="188" cy="46" rx="30" ry="10" fill="none" stroke="#f6a8c0" stroke-width="1.5" opacity="0.45"/>
+  <text x="120.0" y="26" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="10" letter-spacing="2" fill="#f6a8c0" opacity="0.9">SCI-FI</text>
+  <text x="120.0" y="159.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#fff0f4"><tspan x="120.0" dy="0">Distant Engine</tspan></text>
+  <text x="120.0" y="209.0" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="13" fill="#f6a8c0">Leandra Zhukov</text>
+  <line x1="90.0" y1="326" x2="150.0" y2="326" stroke="#f6a8c0" stroke-width="1" opacity="0.6"/>
+  <text x="120.0" y="344" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="10" letter-spacing="3" fill="#fff0f4" opacity="0.85">FERNWOOD PRESS</text>
+</svg>
