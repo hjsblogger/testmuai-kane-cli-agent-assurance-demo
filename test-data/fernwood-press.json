@@ -1,0 +1,178 @@
+{
+  "_comment": "Modeled on christybmanjila/healthcare-assurance-demo's test-data/healthcare.json: flat key -> {value, _note?} fixtures for kane-cli scenarios to reference by name instead of hard-coding values in prose. Built by reading website/server.py directly (the actual app state), not requirements/book-publishing-website.md — that doc currently describes a different app shape (price-per-book, SKU tiles, cart, purchase/edition flow) than server.py implements (a self-publishing platform: browse a read-only book showcase with no price/checkout, submit a manuscript into a package seat, track/withdraw submissions). Reconcile the requirements doc against server.py before running `kane-cli design tests` against it, or generated scenarios will assert behavior (cart, SKU, purchase) the app doesn't have.",
+
+  "base_url": {
+    "value": "http://localhost:5050"
+  },
+
+  "search_term_title_match": {
+    "value": "Willow",
+    "_note": "Matches exactly one book by title substring: 'The Willow Hour'. Verified against the live BOOKS catalog (case-insensitive substring match on title/author/genre)."
+  },
+  "search_term_title_match_expected_result": {
+    "value": "The Willow Hour"
+  },
+  "search_term_genre_match": {
+    "value": "Fantasy",
+    "_note": "Matches all 20 Fantasy books via the genre field — use when a test needs multiple results rather than exactly one."
+  },
+  "search_term_genre_match_expected_count": {
+    "value": "20"
+  },
+  "no_match_term": {
+    "value": "zzz-no-such-book"
+  },
+
+  "genre_listing_fixture": {
+    "value": "Fantasy"
+  },
+  "genre_listing_url": {
+    "value": "http://localhost:5050/genre/Fantasy"
+  },
+  "genre_total_count": {
+    "value": "20",
+    "_note": "Every genre is padded to CATALOG_SIZE_PER_GENRE=20 in server.py's _extend_catalog(), so this count is the same for all 6 genres, not just Fantasy."
+  },
+  "genre_first_title_sort_by_title": {
+    "value": "Ashes of the Ember King",
+    "_note": "Fantasy books sorted by title (server's default sort=title) — resolved from the live catalog, not guessed; will break if BOOKS or the wordbank-generated titles change."
+  },
+  "genre_first_title_sort_by_rating": {
+    "value": "The Iron Court",
+    "_note": "Fantasy books sorted by rating desc (rating 4.9, the highest in the genre)."
+  },
+  "listing_per_page_small": {
+    "value": "6"
+  },
+  "listing_per_page_all": {
+    "value": "20"
+  },
+
+  "book_id": {
+    "value": "iron-court"
+  },
+  "book_title": {
+    "value": "The Iron Court"
+  },
+  "book_author": {
+    "value": "Branwen Oduya"
+  },
+  "book_genre": {
+    "value": "Fantasy"
+  },
+  "book_format": {
+    "value": "Hardcover"
+  },
+  "book_rating": {
+    "value": "4.9"
+  },
+  "book_isbn": {
+    "value": "978-1-63971-013-3"
+  },
+  "book_published": {
+    "value": "June 2022"
+  },
+  "book_detail_url": {
+    "value": "http://localhost:5050/book/iron-court"
+  },
+  "book_package_name": {
+    "value": "Author's Choice",
+    "_note": "This book was published via the authors-choice package — book_detail.html links to /publish/authors-choice as 'Published via our Author's Choice package.'"
+  },
+
+  "home_book_count": {
+    "value": "120",
+    "_note": "len(BOOKS) after catalog extension — shown on the home page as '120+ books published through our platform'."
+  },
+  "featured_book_title": {
+    "value": "The Iron Court",
+    "_note": "Top of the home page's 4 featured books (sorted by rating desc, rating 4.9 is the catalog max). No tie at rank 1, so this is stable; ranks 2-4 tie at 4.8 and their order depends on BOOKS list order — don't assert on those without re-checking."
+  },
+
+  "available_package_id": {
+    "value": "starter"
+  },
+  "available_package_name": {
+    "value": "Starter"
+  },
+  "available_package_code": {
+    "value": "FP-PKG-01"
+  },
+  "available_package_price": {
+    "value": "$499"
+  },
+  "available_package_turnaround_days": {
+    "value": "45"
+  },
+  "available_package_url": {
+    "value": "http://localhost:5050/publish/starter"
+  },
+
+  "scarce_package_id": {
+    "value": "authors-choice",
+    "_note": "Only 1 seat ('Seat 1') exists for this package all month — the one package where 'fully booked this month' is reachable by claiming a single seat, analogous to how the healthcare demo picks a doctor/slot with exactly one remaining opening."
+  },
+  "scarce_package_seat": {
+    "value": "Seat 1"
+  },
+  "scarce_package_preseed_url": {
+    "value": "http://localhost:5050/dev/seed?submit=authors-choice:Seat%201:New%20Manuscript:Preseed%20Fully%20Booked%20Fixture:Preseed%20Author:preseed@example.com:Fantasy&next=/publish/authors-choice",
+    "_note": "Hit this with a throwaway HTTP client (curl, not the browser under test) BEFORE the suite starts, the same way healthcare's preseed_bookings() claims a slot server-side with zero agent-interpretation risk. taken_seats is process-global in server.py, so claiming this seat from any session makes /publish/authors-choice show 'Fully booked this month' and package_full's error text for every subsequent session, including the one under test. Don't navigate the test browser itself to this URL — that would also add a submission row to ITS OWN session, contaminating My Submissions assertions."
+  },
+
+  "manuscript_status_new": {
+    "value": "New Manuscript"
+  },
+  "manuscript_status_revised": {
+    "value": "Revised Manuscript"
+  },
+  "genres_list": {
+    "value": "Biography, Fantasy, Fiction, Mystery, Non-Fiction, Sci-Fi"
+  },
+
+  "new_manuscript_package_id": {
+    "value": "standard",
+    "_note": "Standard has 4 seats — large enough that a normal submit-flow test won't starve the scarce_package_id fixture above (which needs authors-choice's single seat left untouched)."
+  },
+  "new_manuscript_seat": {
+    "value": "Seat 1"
+  },
+  "new_manuscript_book_title": {
+    "value": "The Copper Line"
+  },
+  "new_manuscript_author_name": {
+    "value": "Jordan Ashby"
+  },
+  "new_manuscript_email": {
+    "value": "jordan.ashby@example.com"
+  },
+  "new_manuscript_genre": {
+    "value": "Mystery"
+  },
+
+  "author_with_existing_submission": {
+    "value": "a fresh browser session where you first navigate to http://localhost:5050/dev/seed?submit=standard:Seat%202:New%20Manuscript:The%20Salt%20Almanac:Priya%20Osei:priya.osei@example.com:Non-Fiction&next=/my-submissions before proceeding to Step 1; this pre-seeds exactly one submission into THIS session (via the app's own test-fixture route, not by asking you to fill out the form) and lands you on My Submissions.",
+    "_note": "Session-scoped fixture, so unlike scarce_package_preseed_url this one IS meant to be visited by the test browser itself — submissions live in the Flask session cookie, same reason healthcare's patient_with_booked_appointments couldn't be preseeded server-side. Using /dev/seed instead of prose ('book an appointment first') removes the agent-interpretation risk healthcare's README flagged for that pattern."
+  },
+  "expected_submission_count_after_seed": {
+    "value": "1"
+  },
+
+  "author_with_cancelable_submission": {
+    "value": "a fresh browser session where you first navigate to http://localhost:5050/dev/seed?submit=standard:Seat%203:Revised%20Manuscript:The%20Long%20Gate:Marlowe%20Finch:marlowe.finch@example.com:Biography&next=/my-submissions before proceeding to Step 1; this is the submission that is safe to withdraw."
+  },
+  "expected_submission_count_after_withdraw": {
+    "value": "0"
+  },
+  "submission_reference_example": {
+    "value": "SUB-1004",
+    "_note": "Format only, from contact.html's example text — actual IDs are assigned sequentially starting at SUB-1001 per process lifetime, so don't assert an exact number without seeding submission order deterministically first."
+  },
+
+  "contact_support_hours": {
+    "value": "Monday–Friday, 9:00am–5:00pm."
+  },
+  "contact_support_phone": {
+    "value": "(555) 020-0200"
+  }
+}
